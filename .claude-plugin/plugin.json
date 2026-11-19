@@ -1,0 +1,40 @@
+{
+  "name": "pellucid-chat-naming",
+  "displayName": "Chat Naming",
+  "version": "0.2.0",
+  "description": "Names each Claude Code session from the main agent's own understanding of the task: a stable topic, a numbered phase and a short focus. No extra model call; titles you set yourself are never overwritten.",
+  "author": {
+    "name": "Pellucid Studio"
+  },
+  "keywords": [
+    "session",
+    "title",
+    "rename",
+    "naming",
+    "organization"
+  ],
+  "userConfig": {
+    "state_dir": {
+      "type": "directory",
+      "title": "Naming state directory (optional)",
+      "description": "Override for the plugin's own ledger directory. Leave empty to use pellucid-chat-naming inside the Claude config directory.",
+      "required": false
+    },
+    "desktop_apply": {
+      "type": "boolean",
+      "title": "Rename in Claude Desktop sessions",
+      "description": "Apply titles when the session is drawn by Claude Desktop. Off by default: Desktop title behavior is not verified.",
+      "default": false
+    },
+    "min_turns_between_updates": {
+      "type": "number",
+      "title": "Answers between focus updates",
+      "description": "Completed answers after a title change before the agent is invited to update the focus again.",
+      "default": 3,
+      "min": 1,
+      "max": 50
+    }
+  },
+  "homepage": "https://pellucid.studio/chat-naming/",
+  "license": "MIT"
+}
