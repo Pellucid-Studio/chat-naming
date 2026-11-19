@@ -1,0 +1,25 @@
+{
+  "name": "pellucid",
+  "owner": {
+    "name": "Pellucid Studio",
+    "url": "https://pellucid.studio/"
+  },
+  "metadata": {
+    "description": "Claude Code plugins by Pellucid Studio."
+  },
+  "plugins": [
+    {
+      "name": "pellucid-chat-naming",
+      "source": "./",
+      "description": "Short, consistent session titles from the main agent's own understanding of the task. No extra model call; titles you set yourself are never overwritten.",
+      "version": "0.2.0",
+      "author": {
+        "name": "Pellucid Studio"
+      },
+      "homepage": "https://pellucid.studio/chat-naming/",
+      "repository": "https://github.com/Pellucid-Studio/chat-naming",
+      "license": "MIT",
+      "category": "productivity"
+    }
+  ]
+}

@@ -2,6 +2,10 @@
 
 All notable changes to Chat Naming for Claude Code are listed here. The project follows [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+- Repository is now a Claude Code marketplace named `pellucid`: install with `/plugin install pellucid-chat-naming --marketplace Pellucid-Studio/chat-naming`.
+
 ## [0.2.0] - 2026-11-17
 
 First public release for Claude Code.

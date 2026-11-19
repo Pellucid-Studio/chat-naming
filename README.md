@@ -4,7 +4,20 @@ Chat Naming gives each Claude Code session a short, readable title such as `Rele
 
 ## Install
 
-Add Chat Naming from the plugin directory: run `/plugin directory` in Claude Code, or open **Customize > Plugins** on claude.ai, where a plugin you add also reaches Claude Code. The plugin needs Node.js 22.13 or later on your `PATH` (see Requirements). Start a new session after installing.
+In Claude Code 2.1.275 or later, install it in one step:
+
+```
+/plugin install pellucid-chat-naming --marketplace Pellucid-Studio/chat-naming
+```
+
+On an older Claude Code, add the marketplace first, then install:
+
+```
+/plugin marketplace add Pellucid-Studio/chat-naming
+/plugin install pellucid-chat-naming@pellucid
+```
+
+The same commands work in a terminal as `claude plugin …`. The plugin needs Node.js 22.13 or later on your `PATH` (see Requirements). Start a new session after installing. To update later, run `/plugin marketplace update pellucid`.
 
 ## How it works
 
