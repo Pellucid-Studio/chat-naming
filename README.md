@@ -54,6 +54,10 @@ The plugin is a Claude Code mod: `hooks/register.ts` and the files in `src/` run
 
 Questions and bug reports: [Chat Naming support](https://pellucid.studio/chat-naming/support/). Please do not include chat transcripts, credentials or private information.
 
+## Contributing and security
+
+Bug reports, ideas and pull requests are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md). Report security problems privately as described in [SECURITY.md](SECURITY.md). Release history is in [CHANGELOG.md](CHANGELOG.md).
+
 ## License
 
 Released under the MIT License; see [LICENSE](LICENSE).

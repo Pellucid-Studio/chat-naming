@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Chat Naming support
+    url: https://pellucid.studio/chat-naming/support/
+    about: Questions about installing or using the plugin.
+  - name: Report a security vulnerability
+    url: https://github.com/pellucid-studio/chat-naming/security/advisories/new
+    about: Please report security problems privately, not in a public issue.
