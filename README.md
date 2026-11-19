@@ -1,6 +1,12 @@
+<p align="center"><img src=".claude-plugin/icon.png" width="112" alt="Chat Naming icon"></p>
+
 # Chat Naming
 
 Chat Naming gives each Claude Code session a short, readable title such as `Release pipeline · phase 1 — Roll back failed deploys`. The title comes from the main agent's own understanding of your first real request, so the plugin makes no extra model call. A title you set yourself is never overwritten.
+
+![The Claude Code resume picker listing four sessions titled by Chat Naming, such as "CSV import · phase 1 — Retry duplicates, idempotent load"](assets/resume-picker.png)
+
+The `claude --resume` picker after four real sessions with the plugin installed. Each title was written by the plugin from the first request.
 
 ## Install
 

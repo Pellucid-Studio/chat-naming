@@ -5,6 +5,7 @@ All notable changes to Chat Naming for Claude Code are listed here. The project 
 ## [Unreleased]
 
 - Repository is now a Claude Code marketplace named `pellucid`: install with `/plugin install pellucid-chat-naming --marketplace Pellucid-Studio/chat-naming`.
+- Plugin icon and a README screenshot of real session titles.
 
 ## [0.2.0] - 2026-11-17
 
