@@ -4,14 +4,16 @@
 
 Only the latest released version of Chat Naming receives security fixes.
 
-| Version | Supported |
-| ------- | --------- |
-| 0.2.x   | yes       |
-| < 0.2   | no        |
+| Edition | Version | Supported |
+| ------- | ------- | --------- |
+| Claude Code | 0.2.x | yes |
+| Codex Desktop | 0.2.x | yes |
+| OpenCode (preview) | 0.1.x | yes |
+| Older versions | | no |
 
-## What the plugin can touch
+## What the editions can touch
 
-Chat Naming makes no network requests and calls no model of its own. It runs a local Node.js helper from `libexec/`, keeps a SQLite ledger in its state directory (directory mode 0700, file mode 0600) and renames sessions through Claude Code's own `/rename` command. See "What it runs" and "Data and privacy" in the [README](README.md).
+No edition makes network requests or calls a model of its own. Each keeps a local ledger or preferences file in its app's profile and renames chats only through the app's own rename function. The Claude Code edition runs a local Node.js helper from `libexec/`; the Codex Desktop edition runs `references/preferences.sh` with macOS system utilities; the OpenCode edition runs inside OpenCode. Each edition's README lists what it runs, reads and stores.
 
 ## Reporting a vulnerability
 
@@ -20,4 +22,4 @@ Please do not report security problems in public issues.
 - Preferred: open the **Security** tab of this repository and choose **Report a vulnerability**. The report stays private between you and the maintainers.
 - Alternatively, use the [Chat Naming support page](https://pellucid.studio/chat-naming/support/) and mark the message as a security report.
 
-Include the plugin version, your Claude Code and Node.js versions, steps to reproduce and the impact you expect. We aim to acknowledge a report within 5 working days and to agree on a disclosure date with you once a fix is ready.
+Include the edition and its version, your app version, steps to reproduce and the impact you expect. We aim to acknowledge a report within 5 working days and to agree on a disclosure date with you once a fix is ready.

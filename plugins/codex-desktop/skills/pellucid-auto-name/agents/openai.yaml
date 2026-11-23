@@ -1,0 +1,5 @@
+interface:
+  display_name: "Pellucid Automatic Naming"
+  short_description: "Name new chats when enabled in Setup"
+policy:
+  allow_implicit_invocation: true

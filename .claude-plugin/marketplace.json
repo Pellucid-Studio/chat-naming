@@ -5,12 +5,12 @@
     "url": "https://pellucid.studio/"
   },
   "metadata": {
-    "description": "Claude Code plugins by Pellucid Studio."
+    "description": "Chat Naming by Pellucid Studio: short, consistent chat titles for AI coding agents."
   },
   "plugins": [
     {
       "name": "pellucid-chat-naming",
-      "source": "./",
+      "source": "./plugins/claude-code",
       "description": "Short, consistent session titles from the main agent's own understanding of the task. No extra model call; titles you set yourself are never overwritten.",
       "version": "0.2.1",
       "author": {

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Name this chat"
+  short_description: "Name the current chat on request"
+  default_prompt: "Give this chat a short, descriptive title."
+policy:
+  allow_implicit_invocation: false

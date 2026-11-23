@@ -1,0 +1,20 @@
+{
+  "name": "pellucid",
+  "interface": {
+    "displayName": "Pellucid"
+  },
+  "plugins": [
+    {
+      "name": "pellucid-chat-naming",
+      "source": {
+        "source": "local",
+        "path": "./plugins/codex-desktop"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

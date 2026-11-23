@@ -1,0 +1,21 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "pellucid-chat-naming",
+  "version": "0.2.1",
+  "description": "Give Codex chats short titles that are easy to find again.",
+  "extensions": {
+    "com.openai": {
+      "requires_local_executor": true,
+      "onboardingSkill": "./skills/pellucid-naming-setup/SKILL.md",
+      "interface": {
+        "displayName": "Pellucid Chat Naming",
+        "shortDescription": "Name your Codex chats",
+        "longDescription": "Give your current Codex chat a short title with a topic, a number and a focus. Use the Name this chat skill when you want a title, or enable automatic naming for eligible new chats. Setup saves your choices in the local Codex profile. This release is for local Codex Desktop chats on macOS and uses the app's built-in title action.",
+        "developerName": "Pellucid",
+        "category": "Productivity",
+        "logo": "./assets/naming.svg",
+        "composerIcon": "./assets/naming.svg"
+      }
+    }
+  }
+}

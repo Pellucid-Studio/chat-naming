@@ -1,6 +1,16 @@
 # Changelog
 
-All notable changes to Chat Naming for Claude Code are listed here. The project follows [Semantic Versioning](https://semver.org/).
+All notable changes to Chat Naming are listed here, per edition. The project follows [Semantic Versioning](https://semver.org/).
+
+## [2026-11-23] - Repository: all editions
+
+No released edition changed its code: this release reorganizes the repository around the apps Chat Naming supports and publishes the OpenCode preview for the first time.
+
+- Every released edition lives under `plugins/`: Claude Code 0.2.1, Codex Desktop 0.2.1 and an OpenCode 0.1.0 preview. The Claude Code install command is unchanged.
+- The repository is also a Codex plugin marketplace (`.agents/plugins/marketplace.json`): `codex plugin marketplace add Pellucid-Studio/chat-naming`, then `codex plugin add pellucid-chat-naming@pellucid`. Claude Code keeps reading `.claude-plugin/marketplace.json`.
+- The Codex Desktop plugin folder is attached to the release as a ZIP.
+- README: a cover, a recording of a real Claude Code session being renamed, and a table of supported apps (Codex CLI in development, Antigravity not supported yet).
+- One MIT license for all editions.
 
 ## [0.2.1] - 2026-11-23
 

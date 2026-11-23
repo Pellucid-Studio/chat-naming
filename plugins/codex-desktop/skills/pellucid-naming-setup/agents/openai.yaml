@@ -1,0 +1,5 @@
+interface:
+  display_name: "Pellucid Naming Setup"
+  short_description: "Choose when and how chats are named"
+policy:
+  allow_implicit_invocation: false

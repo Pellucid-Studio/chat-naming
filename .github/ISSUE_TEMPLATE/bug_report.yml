@@ -13,39 +13,29 @@ body:
       description: What you did, what you expected and what you saw instead.
     validations:
       required: true
-  - type: textarea
-    id: status
-    attributes:
-      label: Output of /chat-naming status
-      render: text
-    validations:
-      required: true
-  - type: input
-    id: claude-version
-    attributes:
-      label: Claude Code version
-      placeholder: claude --version
-    validations:
-      required: true
-  - type: input
-    id: node-version
-    attributes:
-      label: Node.js version
-      placeholder: node --version
-    validations:
-      required: true
   - type: dropdown
-    id: surface
+    id: edition
     attributes:
-      label: Where the session runs
+      label: Edition
       options:
-        - Terminal (claude CLI)
-        - Claude desktop app, Code tab
-        - IDE extension
-        - SDK or stream-json
+        - Claude Code
+        - Codex Desktop
+        - OpenCode
         - Other
     validations:
       required: true
+  - type: input
+    id: app-version
+    attributes:
+      label: App version
+      placeholder: claude --version, Codex Desktop About window, opencode --version
+    validations:
+      required: true
+  - type: textarea
+    id: status
+    attributes:
+      label: Claude Code only - output of /chat-naming status and node --version
+      render: text
   - type: input
     id: os
     attributes:
