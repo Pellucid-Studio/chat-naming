@@ -100,7 +100,8 @@ switch -CaseSensitive ($command) {
         $scratch = Join-Path $dir ('.preferences.' + [System.IO.Path]::GetRandomFileName())
         try {
             [System.IO.File]::WriteAllText($scratch, $json, (New-Object System.Text.UTF8Encoding $false))
-            if (Test-Path -LiteralPath $prefs) { [System.IO.File]::Replace($scratch, $prefs, $null) } else { [System.IO.File]::Move($scratch, $prefs) }
+            # A plain $null reaches .NET as an empty string, which Replace rejects as a backup path.
+            if (Test-Path -LiteralPath $prefs) { [System.IO.File]::Replace($scratch, $prefs, [NullString]::Value) } else { [System.IO.File]::Move($scratch, $prefs) }
         } finally {
             if (Test-Path -LiteralPath $scratch) { Remove-Item -LiteralPath $scratch -Force }
         }
