@@ -1,4 +1,4 @@
-<p align="center"><img src="assets/cover.jpg" alt="A swallow carries a blank chat tag on a gold string over a sleeping town at night"></p>
+<p align="center"><img src="assets/cover.jpg" alt="A split-flap board shows Chat Naming in gold above two chat titles: Invoice API retries · phase 1 — Duplicates vs idempotency, and phase 2 — Backfill script"></p>
 
 # Chat Naming
 
