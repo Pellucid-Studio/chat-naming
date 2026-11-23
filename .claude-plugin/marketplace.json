@@ -12,7 +12,7 @@
       "name": "pellucid-chat-naming",
       "source": "./",
       "description": "Short, consistent session titles from the main agent's own understanding of the task. No extra model call; titles you set yourself are never overwritten.",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "author": {
         "name": "Pellucid Studio"
       },

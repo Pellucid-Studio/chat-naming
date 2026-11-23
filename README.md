@@ -33,7 +33,15 @@ The same commands work in a terminal as `claude plugin …`. The plugin needs No
 4. If you rename the session yourself with `/rename`, the plugin freezes automatic naming for that session. `/chat-naming unfreeze` adopts your title as the new baseline.
 5. When the focus of the work changes substantially, the agent may update the focus. The topic and phase number stay the same.
 
-Greetings, one-word replies and slash commands do not trigger naming. Sessions that already have a title are left alone. The plugin approves calls to its own `set_chat_title` tool from the main conversation, so you are not asked each time, and refuses calls from subagents. Any deny rule you set still applies.
+Greetings, one-word replies and slash commands do not trigger naming. Sessions that already have a title are left alone.
+
+The first time the agent calls `set_chat_title`, Claude Code asks you to allow it, like any other tool. Choose **Yes, and don't ask again**, or add the rule yourself in your settings, so naming runs on its own from then on:
+
+```json
+{ "permissions": { "allow": ["mcp__pellucid-chat-naming__set_chat_title"] } }
+```
+
+The plugin never allows the tool on your behalf: your permission rules and mode decide. It refuses calls from subagents. In an SDK or stream-json session without that allow rule the call is refused and the session stays untitled.
 
 ## Commands
 
@@ -55,10 +63,24 @@ Set `CHAT_NAMING_DEBUG=1` to print diagnostic lines in the transcript.
 
 The plugin is a Claude Code mod: `hooks/register.ts` and the files in `src/` run inside Claude Code. For every ledger operation it starts `node --no-warnings libexec/chat-naming-core.mjs --state-dir <state directory>` with one JSON request on standard input, and reads one JSON answer. At the first session event it runs the same file with `--probe` to check the Node.js version. `libexec/` contains readable JavaScript generated from the project's TypeScript sources with the types removed, and `libexec/sqlite.mjs` adapts Node's built-in `node:sqlite` module. Nothing is downloaded or installed.
 
+## What the mod does inside Claude Code
+
+The plugin directory asks mods to say plainly what they hook and run. Chat Naming:
+
+- **Starts one program:** `node`, only to run its own bundled `libexec/chat-naming-core.mjs` (once with `--probe`, then once per ledger operation, as described above). It starts nothing else.
+- **Runs one slash command itself:** `/rename <title>`, after an answer ends, to apply the staged title. It never runs other commands.
+- **Hooks the permission check** for its own `set_chat_title` tool only: it refuses the call when a subagent makes it and otherwise passes the check on unchanged, so your rules decide. It never answers allow.
+- **Serves its own tool after the permission check:** the `tool.run` hook for `set_chat_title` is the tool's implementation. It runs only once the call is allowed, returns a short text and touches no other tool.
+- **Adds context to a prompt:** on your first ordinary prompt in an untitled session, and when a focus update is due, it appends one instruction line for Claude to that turn. The prompt you see is unchanged.
+- **Reads prompts only to skip commands:** it checks whether each submitted prompt starts with `/`. The prompt text is not stored, logged or passed on.
+- **Watches `/rename`:** a rename it did not make freezes naming for the session.
+- **Reads environment variables** `HOME`, `CLAUDE_CONFIG_DIR`, `CHAT_NAMING_STATE_DIR` and `CHAT_NAMING_DEBUG`, only to find its state directory and turn on debug lines. It reads no credentials, keys or tokens.
+- **Sends nothing out:** the only data that leaves the mod goes to the local `node` process above, over standard input, and to Claude Code's own `/rename`. Neither makes a network request.
+
 ## Data and privacy
 
 - **No network access.** Neither the mod nor the local core makes network requests, and the plugin calls no model of its own. It does not send data to Anthropic, Pellucid Studio or any third party.
-- **What it reads:** the session id, the working directory and project root, the current session title that Claude Code reports, and which surface draws the session. It sees the topic and focus that the agent passes to its tool. It does not read your files or the conversation transcript.
+- **What it reads:** the session id, the working directory and project root, the current session title that Claude Code reports, and which surface draws the session. It sees the topic and focus that the agent passes to its tool. It does not read your files or the conversation transcript; of your prompts it checks only whether one starts with `/`.
 - **What it writes:** the session title, through Claude Code's own `/rename` command, and a local SQLite ledger on your machine. The ledger holds session ids, topics, focus phrases, titles, phase numbers, handoff records and a SHA-256 hash of the project path. The directory is created with owner-only permissions (0700) and the file with 0600.
 - **Retention:** the ledger stays until you delete it. Uninstalling the plugin does not delete it; remove the state directory yourself if you no longer want it.
 

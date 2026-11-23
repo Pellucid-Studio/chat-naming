@@ -1,7 +1,7 @@
 {
   "name": "pellucid-chat-naming",
   "displayName": "Chat Naming",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Names each Claude Code session from the main agent's own understanding of the task: a stable topic, a numbered phase and a short focus. No extra model call; titles you set yourself are never overwritten.",
   "author": {
     "name": "Pellucid Studio"

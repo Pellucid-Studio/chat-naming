@@ -2,9 +2,11 @@
 
 All notable changes to Chat Naming for Claude Code are listed here. The project follows [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.2.1] - 2026-11-23
 
-- Repository is now a Claude Code marketplace named `pellucid`: install with `/plugin install pellucid-chat-naming --marketplace Pellucid-Studio/chat-naming`.
+- `set_chat_title` now runs only after Claude Code's permission check, and the plugin never allows it on your behalf. Claude Code asks once, like for any tool; choose **Yes, and don't ask again**, or add `mcp__pellucid-chat-naming__set_chat_title` to `permissions.allow`. Subagent calls are still refused.
+- README: a section on what the mod hooks, runs and reads inside Claude Code; the first-run permission prompt.
+- Repository is a Claude Code marketplace named `pellucid`: install with `/plugin install pellucid-chat-naming --marketplace Pellucid-Studio/chat-naming`.
 - Plugin icon and a README screenshot of real session titles.
 
 ## [0.2.0] - 2026-11-17

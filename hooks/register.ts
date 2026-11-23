@@ -171,16 +171,15 @@ export const register: Register = (on, options) => {
     return next({ ...e, context: [...(e.context ?? []), line] })
   })
 
-  // The naming tool only stages a title, so the main conversation may call it
-  // without a prompt; subagents may not.
+  // Subagents may not call the naming tool. For the main conversation the
+  // user's own permission rules decide: this hook never allows.
   on('tool.check', { tool: 'mcp__pellucid-chat-naming__set_chat_title' }, async ($, e, next) => {
-    const decided = await next(e)
-    if (decided.decision === 'deny') return decided
     if (e.agentId) return { decision: 'deny', reason: TOOL_TEXT.subagent }
-    return { decision: 'allow' }
+    return next(e)
   })
 
-  on('tool.call', { tool: 'mcp__pellucid-chat-naming__set_chat_title' }, async ($, e) => {
+  // Served at tool.run, once the call is allowed: the permission check is never skipped.
+  on('tool.run', { tool: 'mcp__pellucid-chat-naming__set_chat_title' }, async ($, e) => {
     // Tool arguments are fields of e beside the reserved tool, tool_use_id, agentId.
     const input = e as unknown as Record<string, unknown>
     const args: Record<string, unknown> = {}
