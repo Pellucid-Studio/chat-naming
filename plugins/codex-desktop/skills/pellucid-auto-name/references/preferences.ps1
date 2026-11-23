@@ -1,8 +1,9 @@
 # Windows counterpart of preferences.sh: same commands, checks and JSON output.
 # Settings live in %CODEX_HOME%\pellucid-chat-naming\preferences.json (default %USERPROFILE%\.codex).
 # Run: powershell -NoProfile -ExecutionPolicy Bypass -File preferences.ps1 read
-#      powershell -NoProfile -ExecutionPolicy Bypass -File preferences.ps1 save <language_mode> <language_tag|-> <kind> <label|-> <mode>
-# "-" stands for an empty value: Windows PowerShell 5.1 drops empty arguments passed to an external command.
+#      powershell -NoProfile -ExecutionPolicy Bypass -File preferences.ps1 save <language_mode> <language_tag|none> <kind> <label|none> <mode>
+# "none" stands for the empty language tag of automatic language and the empty label of a preset numbering:
+# Windows PowerShell 5.1 drops empty arguments and reads "-" as a parameter name.
 $ErrorActionPreference = 'Stop'
 try { [Console]::OutputEncoding = New-Object System.Text.UTF8Encoding $false } catch { }
 
@@ -81,7 +82,9 @@ switch -CaseSensitive ($command) {
     }
     'save' {
         if ($args.Count -ne 6) { Fail 'invalid-preferences' }
-        $values = @($args[1..5] | ForEach-Object { if ($_ -eq '-') { '' } else { [string]$_ } })
+        $values = @($args[1..5] | ForEach-Object { [string]$_ })
+        if ($values[0] -ceq 'auto' -and $values[1] -ceq 'none') { $values[1] = '' }
+        if ($values[2] -cin @('phase', 'level', 'step') -and $values[3] -ceq 'none') { $values[3] = '' }
         Test-Values $values[0] $values[1] $values[2] $values[3] $values[4]
         Assert-SafePaths
         if (-not (Test-Path -LiteralPath $dir)) { New-Item -ItemType Directory -Path $dir -Force | Out-Null }

@@ -35,14 +35,15 @@ function Expect-Fail([string[]]$HelperArgs, [string]$Code) {
 }
 
 Expect-Ok @('read') @{ configured = $false }
-Expect-Ok @('save', 'auto', '-', 'phase', '-', 'auto') @{ language_mode = 'auto'; fixed_language = ''; stage_label_kind = 'phase'; stage_label = ''; invocation_mode = 'auto' }
+Expect-Ok @('save', 'auto', 'none', 'phase', 'none', 'auto') @{ language_mode = 'auto'; fixed_language = ''; stage_label_kind = 'phase'; stage_label = ''; invocation_mode = 'auto' }
 Expect-Ok @('read') @{ schema_version = 1; stage_label_kind = 'phase'; invocation_mode = 'auto' }
+Expect-Ok @('save', 'auto', 'none', 'custom', 'none', 'auto') @{ stage_label_kind = 'custom'; stage_label = 'none' }
 $label = -join ([char]0x042D, [char]0x0442, [char]0x0430, [char]0x043F)
 Expect-Ok @('save', 'fixed', 'fr', 'custom', $label, 'on-demand') @{ language_mode = 'fixed'; fixed_language = 'fr'; stage_label_kind = 'custom'; stage_label = $label; invocation_mode = 'on-demand' }
 Expect-Ok @('read') @{ stage_label = $label; invocation_mode = 'on-demand' }
-Expect-Fail @('save', 'fixed', '!!', 'phase', '-', 'auto') 'invalid-language'
-Expect-Fail @('save', 'auto', '-', 'custom', ('a' + [char]0x00B7 + 'b'), 'auto') 'invalid-label'
-Expect-Fail @('save', 'auto', '-', 'phase', '-', 'always') 'invalid-mode'
+Expect-Fail @('save', 'fixed', '!!', 'phase', 'none', 'auto') 'invalid-language'
+Expect-Fail @('save', 'auto', 'none', 'custom', ('a' + [char]0x00B7 + 'b'), 'auto') 'invalid-label'
+Expect-Fail @('save', 'auto', 'none', 'phase', 'none', 'always') 'invalid-mode'
 Expect-Fail @('delete') 'invalid-command'
 Expect-Ok @('read') @{ stage_label = $label }
 
