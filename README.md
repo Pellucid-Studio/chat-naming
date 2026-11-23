@@ -1,4 +1,4 @@
-<p align="center"><img src="assets/cover.jpg" alt="A split-flap board shows Chat Naming in gold above two chat titles: Invoice API retries · phase 1 — Duplicates vs idempotency, and phase 2 — Backfill script"></p>
+<p align="center"><img src="assets/cover.jpg" alt="A felt octopus in an underwater archive files loose speech-bubble cards, one per arm, into glowing rows of brass pigeonholes"></p>
 
 # Chat Naming
 
