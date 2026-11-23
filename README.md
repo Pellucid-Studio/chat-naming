@@ -31,9 +31,9 @@ Agent apps title a chat from its first message, or not at all. After a week you 
 
 | App | Status | How it works | Install |
 | --- | --- | --- | --- |
-| **Claude Code** | Ready, 0.2.1 | A Claude Code mod with a local Node.js core; applies titles with `/rename` | [plugins/claude-code](plugins/claude-code) |
-| **Codex Desktop** (macOS) | Ready, 0.2.1 | Skills that use Codex Desktop's built-in title action; setup window, on-request or automatic mode | [plugins/codex-desktop](plugins/codex-desktop) |
-| **OpenCode** | Preview, 0.1.0 | An OpenCode plugin that writes titles through the session API and reads them back | [plugins/opencode](plugins/opencode) |
+| **Claude Code** | Ready, 0.2.2 | A Claude Code mod with a local Node.js core; applies titles with `/rename`. macOS, Linux, Windows | [plugins/claude-code](plugins/claude-code) |
+| **Codex Desktop** | Ready, 0.2.2 | Skills that use Codex Desktop's built-in title action; setup window, on-request or automatic mode. macOS, Windows | [plugins/codex-desktop](plugins/codex-desktop) |
+| **OpenCode** | Preview, 0.1.1 | An OpenCode plugin that writes titles through the session API and reads them back. macOS, Linux, Windows | [plugins/opencode](plugins/opencode) |
 | **Codex CLI** | In development | Hooks and a local MCP server; working in our tests, being repackaged as readable source | — |
 | **Antigravity** | Not supported yet | Antigravity has no way for a plugin to set a chat title (checked on `agy` 1.5.14) | — |
 
@@ -45,7 +45,7 @@ Agent apps title a chat from its first message, or not at all. After a week you 
 /plugin install pellucid-chat-naming --marketplace Pellucid-Studio/chat-naming
 ```
 
-**Codex Desktop** (macOS), with the Codex CLI (bundled with the app or installed on its own), then choose **Setup** in Codex Desktop:
+**Codex Desktop** (macOS or Windows), with the Codex CLI (bundled with the app or installed on its own), then choose **Setup** in Codex Desktop:
 
 ```sh
 codex plugin marketplace add Pellucid-Studio/chat-naming

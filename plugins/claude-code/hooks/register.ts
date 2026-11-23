@@ -67,6 +67,7 @@ async function contextFor($: EngineInterface): Promise<Context> {
     option: optionStateDir,
     claudeConfigDir: await $.env.get('CLAUDE_CONFIG_DIR'),
     home: await $.env.get('HOME'),
+    userProfile: await $.env.get('USERPROFILE'),
   })
   const helper = $.plugin.root + BUNDLED_HELPER
 

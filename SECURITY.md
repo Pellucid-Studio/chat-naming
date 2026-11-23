@@ -13,7 +13,7 @@ Only the latest released version of Chat Naming receives security fixes.
 
 ## What the editions can touch
 
-No edition makes network requests or calls a model of its own. Each keeps a local ledger or preferences file in its app's profile and renames chats only through the app's own rename function. The Claude Code edition runs a local Node.js helper from `libexec/`; the Codex Desktop edition runs `references/preferences.sh` with macOS system utilities; the OpenCode edition runs inside OpenCode. Each edition's README lists what it runs, reads and stores.
+No edition makes network requests or calls a model of its own. Each keeps a local ledger or preferences file in its app's profile and renames chats only through the app's own rename function. The Claude Code edition runs a local Node.js helper from `libexec/`; the Codex Desktop edition runs `references/preferences.sh` with macOS system utilities, or `references/preferences.ps1` with Windows PowerShell; the OpenCode edition runs inside OpenCode. Each edition's README lists what it runs, reads and stores.
 
 ## Reporting a vulnerability
 

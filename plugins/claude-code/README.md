@@ -51,7 +51,7 @@ The plugin never allows the tool on your behalf: your permission rules and mode 
 
 The plugin asks for three optional values when you install it:
 
-- **Naming state directory**: where the plugin keeps its local ledger. Leave it empty to use `pellucid-chat-naming` inside your Claude configuration directory. The environment variable `CHAT_NAMING_STATE_DIR` overrides it.
+- **Naming state directory**: where the plugin keeps its local ledger. Leave it empty to use `pellucid-chat-naming` inside your Claude configuration directory (`~/.claude`, or `%USERPROFILE%\.claude` on Windows). The environment variable `CHAT_NAMING_STATE_DIR` overrides it.
 - **Rename in Claude Desktop sessions**: off by default, because title behavior in the Claude desktop app's Code tab is not verified.
 - **Answers between focus updates**: how many completed answers must pass before the agent is invited to update the focus again. Default 3.
 
@@ -72,7 +72,7 @@ The plugin directory asks mods to say plainly what they hook and run. Chat Namin
 - **Adds context to a prompt:** on your first ordinary prompt in an untitled session, and when a focus update is due, it appends one instruction line for Claude to that turn. The prompt you see is unchanged.
 - **Reads prompts only to skip commands:** it checks whether each submitted prompt starts with `/`. The prompt text is not stored, logged or passed on.
 - **Watches `/rename`:** a rename it did not make freezes naming for the session.
-- **Reads environment variables** `HOME`, `CLAUDE_CONFIG_DIR`, `CHAT_NAMING_STATE_DIR` and `CHAT_NAMING_DEBUG`, only to find its state directory and turn on debug lines. It reads no credentials, keys or tokens.
+- **Reads environment variables** `HOME`, `USERPROFILE` (Windows), `CLAUDE_CONFIG_DIR`, `CHAT_NAMING_STATE_DIR` and `CHAT_NAMING_DEBUG`, only to find its state directory and turn on debug lines. It reads no credentials, keys or tokens.
 - **Sends nothing out:** the only data that leaves the mod goes to the local `node` process above, over standard input, and to Claude Code's own `/rename`. Neither makes a network request.
 
 ## Data and privacy
@@ -86,6 +86,7 @@ The plugin directory asks mods to say plainly what they hook and run. Chat Namin
 
 - Claude Code 2.1.325 or later, in an interactive session or in an SDK or stream-json session that keeps input open. One-shot `claude -p` runs are not supported, because the process can exit before the title is applied.
 - Node.js 22.13 or later available as `node` on `PATH`. Without it the plugin stays silent and `/chat-naming status` says why.
+- macOS, Linux and Windows. On Windows, install Node.js so that `node` works in a new terminal, then restart Claude Code.
 - Claude Code offers no compare-and-set for titles. A rename made outside the session, for example in the desktop sidebar, between the plugin's last observation and its write can be overwritten.
 - The directory lists plugins with a hooks module (a mod) for Claude Code only.
 

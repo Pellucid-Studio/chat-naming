@@ -1,6 +1,6 @@
 # Chat Naming for Codex Desktop
 
-Gives your local Codex Desktop chats short titles with a topic, a phase number and a focus, such as `Checkout · phase 1 — Refund retries`. It runs as skills inside Codex and uses Codex Desktop's built-in title action. Version 0.2.1, macOS.
+Gives your local Codex Desktop chats short titles with a topic, a phase number and a focus, such as `Checkout · phase 1 — Refund retries`. It runs as skills inside Codex and uses Codex Desktop's built-in title action. Version 0.2.2, macOS and Windows.
 
 ## Install
 
@@ -14,9 +14,9 @@ Gives your local Codex Desktop chats short titles with a topic, a phase number a
    Offline, run the same `marketplace add` with the path of a downloaded copy of the whole repository.
 2. In Codex Desktop, open **Pellucid Chat Naming** and choose **Setup**, or start **Pellucid Naming Setup** from the skill menu. The setup follows the app's language and lets you pick another language for chat titles.
 
-The release also carries `pellucid-chat-naming-0.2.1-codex-desktop.zip`: the same plugin folder as a single archive, for plugin directories that take an upload.
+The release also carries `pellucid-chat-naming-0.2.2-codex-desktop.zip`: the same plugin folder as a single archive, for plugin directories that take an upload.
 
-Setup saves only the options you pick, in `${CODEX_HOME:-$HOME/.codex}/pellucid-chat-naming/preferences.plist`. They apply to this Codex profile across local projects. Saving outside the current project may need your approval in Codex.
+Setup saves only the options you pick, in `${CODEX_HOME:-$HOME/.codex}/pellucid-chat-naming/preferences.plist` on macOS, or `%CODEX_HOME%\pellucid-chat-naming\preferences.json` (by default `%USERPROFILE%\.codex\…`) on Windows. They apply to this Codex profile across local projects. Saving outside the current project may need your approval in Codex.
 
 ## Modes
 
@@ -26,11 +26,11 @@ Setup saves only the options you pick, in `${CODEX_HOME:-$HOME/.codex}/pellucid-
 
 ## What it runs and stores
 
-- The skills ask Codex to compose the title and apply it with the app's own title action. The setup and the skills read and write the preferences file with `references/preferences.sh`, which uses macOS system utilities such as `plutil`.
+- The skills ask Codex to compose the title and apply it with the app's own title action. The setup and the skills read and write the preferences file with `references/preferences.sh`, which uses macOS system utilities such as `plutil`, or on Windows with `references/preferences.ps1`, run by the built-in Windows PowerShell (`powershell -NoProfile -ExecutionPolicy Bypass -File`, for that one script only).
 - Nothing is sent to a separate service, and no extra model call is made.
 - A title you set yourself is kept when its origin is known or suspected. The title action has no atomic guard, so a manual rename at the same moment can be overwritten.
 
 ## Limits
 
-- Local Codex Desktop chats on macOS only. Codex CLI support is in development.
+- Local Codex Desktop chats on macOS and Windows. Codex CLI support is in development.
 - Not affiliated with or endorsed by OpenAI.

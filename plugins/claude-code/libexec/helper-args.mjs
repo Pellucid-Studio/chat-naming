@@ -6,10 +6,11 @@ export function parseHelperArgs(argv) {
     if (dir === undefined || dir === '') return {
         error: '--state-dir <absolute path> is required'
     };
-    if (!dir.startsWith('/')) return {
+    const absolute = dir.startsWith('/') || /^[A-Za-z]:[\\/]/.test(dir) || /^\\\\[^\\/]+[\\/][^\\/]+/.test(dir);
+    if (!absolute) return {
         error: '--state-dir must be an absolute path'
     };
-    if (dir.split('/').includes('..')) return {
+    if (dir.split(/[\\/]/).includes('..')) return {
         error: '--state-dir must not contain ".."'
     };
     return {

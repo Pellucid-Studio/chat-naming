@@ -118,6 +118,7 @@ function lstatOrNull(path) {
         throw error;
     }
 }
+const POSIX_MODES = process.platform !== "win32";
 function uid() {
     return typeof process.getuid === "function" ? process.getuid() : -1;
 }
@@ -187,7 +188,7 @@ function prepareFiles(rawStateDir, readOnly) {
         dir = lstatSync(stateDir);
     }
     assertOwned(dir, stateDir, "directory");
-    if ((dir.mode & 0o077) !== 0) {
+    if (POSIX_MODES && (dir.mode & 0o077) !== 0) {
         if (readOnly) fail("UNSAFE_STATE_PATH", "state directory is accessible by other users", {
             path: stateDir
         });
@@ -203,7 +204,7 @@ function prepareFiles(rawStateDir, readOnly) {
         const side = lstatOrNull(sidePath);
         if (!side) continue;
         assertOwned(side, sidePath, "file");
-        if ((side.mode & 0o077) !== 0) {
+        if (POSIX_MODES && (side.mode & 0o077) !== 0) {
             if (readOnly) fail("UNSAFE_STATE_PATH", "registry side file is accessible by other users", {
                 path: sidePath
             });
@@ -222,7 +223,7 @@ function prepareFiles(rawStateDir, readOnly) {
         file = lstatSync(dbPath);
     }
     assertOwned(file, dbPath, "file");
-    if ((file.mode & 0o077) !== 0) {
+    if (POSIX_MODES && (file.mode & 0o077) !== 0) {
         if (readOnly) fail("UNSAFE_STATE_PATH", "registry file is accessible by other users", {
             path: dbPath
         });

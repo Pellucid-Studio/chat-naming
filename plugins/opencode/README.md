@@ -1,6 +1,6 @@
 # Chat Naming for OpenCode (preview)
 
-Gives OpenCode sessions short titles with a topic, a phase number and a focus. The assistant you already use proposes the title through the plugin's `pellucid_name_chat` tool; the plugin writes it with OpenCode's own session API and reads it back. Version 0.1.0, built for OpenCode 1.15.13. This is a preview: the title write and readback passed on OpenCode 1.15.13, broader acceptance is still open.
+Gives OpenCode sessions short titles with a topic, a phase number and a focus. The assistant you already use proposes the title through the plugin's `pellucid_name_chat` tool; the plugin writes it with OpenCode's own session API and reads it back. Version 0.1.1, built for OpenCode 1.15.13; runs on macOS, Linux and Windows. This is a preview: the title write and readback passed on OpenCode 1.15.13, broader acceptance is still open.
 
 ## Install
 
@@ -16,6 +16,8 @@ Use a project's `.opencode` folder instead to install for one project. Open a ne
 python3 install.py uninstall --config-dir ~/.config/opencode
 ```
 
+To update an earlier version, run `uninstall`, then `install` from the new copy.
+
 The installer copies only `pellucid-chat-naming.js` into `plugins/` with a receipt. It never rewrites `opencode.json`, keeps other files, and refuses to remove a plugin file that was changed by hand. Python 3 is needed only for the installer; the plugin runs in OpenCode's own Bun runtime.
 
 ## How it behaves
@@ -28,7 +30,7 @@ The installer copies only `pellucid-chat-naming.js` into `plugins/` with a recei
 
 ## Data
 
-The plugin keeps a local ledger in `$XDG_STATE_HOME/pellucid-chat-naming/opencode` (or `~/.local/state/...`). Uninstalling keeps it; delete the folder yourself if you no longer need it. Nothing is sent to a separate service.
+The plugin keeps a local ledger in `$XDG_STATE_HOME/pellucid-chat-naming/opencode` (or `~/.local/state/...`; on Windows `%USERPROFILE%\.local\state\...`). Uninstalling keeps it; delete the folder yourself if you no longer need it. Nothing is sent to a separate service.
 
 ## Limits
 

@@ -35,7 +35,7 @@ def apply(action, config_dir, source):
         if target.exists() or receipt.exists():
             if target.is_file() and receipt.is_file():
                 record = json.loads(receipt.read_text())
-                if record == {"file": NAME, "sha256": expected, "version": "0.1.0"} and digest(target) == expected:
+                if record == {"file": NAME, "sha256": expected, "version": "0.1.1"} and digest(target) == expected:
                     return {"changed": False, "path": str(target)}
             raise ValueError("Existing or changed plugin/receipt; no files overwritten")
         target_dir.mkdir(parents=True, exist_ok=True)
@@ -43,7 +43,7 @@ def apply(action, config_dir, source):
             out.write(source.read_bytes())
         try:
             with receipt.open("x") as out:
-                json.dump({"file": NAME, "sha256": expected, "version": "0.1.0"}, out)
+                json.dump({"file": NAME, "sha256": expected, "version": "0.1.1"}, out)
         except BaseException:
             if digest(target) == expected:
                 target.unlink()

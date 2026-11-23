@@ -1,0 +1,35 @@
+name: Windows
+
+on:
+  push:
+    branches: [main, universal]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    name: Windows, Node.js ${{ matrix.node }}
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['22', '24']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: oven-sh/setup-bun@v2
+      - name: Claude Code core, state paths and ledger
+        run: node .github/scripts/claude-core-smoke.mjs
+      - name: OpenCode plugin loads in Bun
+        run: bun .github/scripts/opencode-load.mjs
+      - name: Codex Desktop preferences helper (Windows PowerShell 5.1)
+        shell: pwsh
+        run: ./.github/scripts/preferences-roundtrip.ps1 -Shell powershell
+      - name: Codex Desktop preferences helper (PowerShell 7)
+        shell: pwsh
+        run: ./.github/scripts/preferences-roundtrip.ps1 -Shell pwsh

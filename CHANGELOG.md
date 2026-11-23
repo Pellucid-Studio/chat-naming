@@ -2,6 +2,14 @@
 
 All notable changes to Chat Naming are listed here, per edition. The project follows [Semantic Versioning](https://semver.org/).
 
+## [0.2.2] - 2026-11-23 - Windows support: Claude Code 0.2.2, Codex Desktop 0.2.2, OpenCode 0.1.1
+
+- Claude Code: on Windows the plugin found no state directory and stayed silent, and its core helper refused Windows paths. Both now accept drive (`C:\...`) and UNC paths; the plugin uses `%USERPROFILE%\.claude\pellucid-chat-naming` by default and keeps `CLAUDE_CONFIG_DIR`, `CHAT_NAMING_STATE_DIR` and the `state_dir` option first. Node.js 22.13 or later is still needed on `PATH`.
+- All editions with a local ledger (Claude Code, OpenCode): Windows reports synthetic permission bits, so the POSIX "accessible by other users" checks refused to open the ledger there. These checks now run on macOS and Linux only; on Windows access is governed by the user profile.
+- Codex Desktop: new `references/preferences.ps1` for Windows PowerShell 5.1 and later, with the same commands, checks and output as `preferences.sh`. Preferences on Windows are stored in `preferences.json` in the Codex profile. The skills choose the helper for the current system.
+- OpenCode: to update from 0.1.0, run `install.py uninstall`, then `install` from the new copy.
+- Repository: a GitHub Actions workflow runs the shipped Claude Code core, the OpenCode plugin and the PowerShell preferences helper on Windows for every push.
+
 ## [2026-11-23] - Repository: all editions
 
 No released edition changed its code: this release reorganizes the repository around the apps Chat Naming supports and publishes the OpenCode preview for the first time.
